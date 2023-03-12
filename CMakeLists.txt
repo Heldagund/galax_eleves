@@ -33,6 +33,7 @@ set(SRC_FILES_MAIN    ${CMAKE_CURRENT_SOURCE_DIR}/src/Model/Model.cpp
                       ${CMAKE_CURRENT_SOURCE_DIR}/src/Model/Model_CPU/Model_CPU.cpp
                       ${CMAKE_CURRENT_SOURCE_DIR}/src/Model/Model_CPU/Model_CPU_naive/Model_CPU_naive.cpp
                       ${CMAKE_CURRENT_SOURCE_DIR}/src/Model/Model_CPU/Model_CPU_fast/Model_CPU_fast.cpp
+                      ${CMAKE_CURRENT_SOURCE_DIR}/src/Model/Model_CPU/Model_CPU_fast/Model_CPU_FMM.cpp
                       ${CMAKE_CURRENT_SOURCE_DIR}/src/Initstate.cpp
                       ${CMAKE_CURRENT_SOURCE_DIR}/src/Timing/Timing.cpp
                       ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
