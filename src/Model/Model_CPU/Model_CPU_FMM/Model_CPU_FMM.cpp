@@ -1,8 +1,8 @@
-#ifdef GALAX_MODEL_CPU_FAST
+#ifdef GALAX_MODEL_CPU_FMM
 
 #include <cmath>
 
-#include "Model_CPU_fast.hpp"
+#include "Model_CPU_FMM.hpp"
 
 #include <xsimd/xsimd.hpp>
 #include <omp.h>
@@ -10,13 +10,13 @@
 namespace xs = xsimd;
 using b_type = xs::batch<float, xs::avx2>;
 
-Model_CPU_fast
-::Model_CPU_fast(const Initstate& initstate, Particles& particles)
+Model_CPU_FMM
+::Model_CPU_FMM(const Initstate& initstate, Particles& particles)
 : Model_CPU(initstate, particles)
 {
 }
 
-void Model_CPU_fast
+void Model_CPU_FMM
 ::step()
 {
     std::fill(accelerationsx.begin(), accelerationsx.end(), 0);
@@ -177,4 +177,4 @@ void Model_CPU_fast
 	// }
 }
 
-#endif // GALAX_MODEL_CPU_FAST
+#endif // GALAX_MODEL_CPU_FMM

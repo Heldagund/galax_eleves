@@ -1,19 +1,19 @@
-#ifdef GALAX_MODEL_CPU_FAST
+#ifdef GALAX_MODEL_CPU_FMM
 
-#ifndef MODEL_CPU_FAST_HPP_
-#define MODEL_CPU_FAST_HPP_
+#ifndef MODEL_CPU_FMM_HPP_
+#define MODEL_CPU_FMM_HPP_
 
 #include "../Model_CPU.hpp"
 
-class Model_CPU_fast : public Model_CPU
+class Model_CPU_FMM : public Model_CPU
 {
 public:
-    Model_CPU_fast(const Initstate& initstate, Particles& particles);
+    Model_CPU_FMM(const Initstate& initstate, Particles& particles);
 
-    virtual ~Model_CPU_fast() = default;
+    virtual ~Model_CPU_FMM() = default;
 
     virtual void step();
 };
-#endif // MODEL_CPU_FAST_HPP_
+#endif // MODEL_CPU_FMM_HPP_
 
-#endif // GALAX_MODEL_CPU_FAST
+#endif // GALAX_MODEL_CPU_FMM
