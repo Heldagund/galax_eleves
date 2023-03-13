@@ -27,8 +27,10 @@ void Model_CPU_FMM
 ::step()
 {
 	BuildTree();
-	MeasureDepth(root);
-	std::cout << "r_min = " << r_min <<std::endl;
+	//MeasureTreeDepth(root);
+	GetMultipole(root);
+	//std::cout << "r_min = " << r_min <<std::endl;
+	ResetTree(root);
 }
 
 #endif // GALAX_MODEL_CPU_FMM

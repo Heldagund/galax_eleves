@@ -19,7 +19,7 @@ public:
 
 	void sample_before();
 	void sample_after();
-        float get_current_average_FPS() const;
+    float get_current_average_FPS() const;
 };
 
 
