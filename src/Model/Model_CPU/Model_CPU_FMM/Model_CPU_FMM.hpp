@@ -14,7 +14,7 @@
 
 #define N_CRIT 100
 #define R_ROOT 1024
-#define THETA 0.2
+#define THETA 0.1
 
 class Cell
 {
