@@ -3,7 +3,7 @@ cmake_policy(SET CMP0054 NEW)
 cmake_policy(SET CMP0072 NEW)
 project (galax)
 
-add_compile_options(-g)
+# add_compile_options(-g)
 
 if(GALAX_LINK_CUDA)
     enable_language(CUDA)

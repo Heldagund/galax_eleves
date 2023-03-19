@@ -1,7 +1,7 @@
 #include <cmath>
 
 #include "Model_CPU_naive.hpp"
-
+#include <iostream>
 Model_CPU_naive
 ::Model_CPU_naive(const Initstate& initstate, Particles& particles)
 : Model_CPU(initstate, particles)
@@ -43,7 +43,11 @@ void Model_CPU_naive
 			}
 		}
 	}
-
+	for (const auto &item : accelerationsx) 
+    {
+        std::cout << item << "\n";
+    }
+	std::cout << "\n" << std::endl;
 	for (int i = 0; i < n_particles; i++)
 	{
 		velocitiesx[i] += accelerationsx[i] * 2.0f;

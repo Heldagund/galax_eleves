@@ -72,8 +72,8 @@ void Model_CPU_fast
 	// }
 
 // OMP + xsimd version
-	//const b_type dij_threshold = b_type::broadcast(1.0);
-	//const b_type dij_max = b_type::broadcast(10.0);
+	// const b_type dij_threshold = b_type::broadcast(1.0);
+	// const b_type dij_max = b_type::broadcast(10.0);
 	auto vec_size = n_particles-n_particles%b_type::size;
 
 	// #pragma omp parallel for
@@ -129,6 +129,10 @@ void Model_CPU_fast
 	std::copy(particles.z.begin(), particles.z.end(), posz_ex.begin()+b_type::size-1);
 	std::copy(initstate.masses.begin(), initstate.masses.end(), mass_ex.begin()+b_type::size-1);
 
+	b_type raccx_i = b_type::load_unaligned(&accelerationsx[0]);
+	b_type raccy_i = b_type::load_unaligned(&accelerationsy[0]);
+	b_type raccz_i = b_type::load_unaligned(&accelerationsz[0]);
+
 	#pragma omp parallel for
 		for (int i = 0; i < vec_size; i += b_type::size)
 		{
@@ -155,12 +159,12 @@ void Model_CPU_fast
 					b_type diffz = rposz_j - rposz_i;
 					b_type dij = diffx * diffx + diffy * diffy + diffz * diffz;
 
-					//auto mask_threshold = xs::lt(dij, dij_threshold);
+					// auto mask_threshold = xs::lt(dij, dij_threshold);
 					
 					dij =  _mm256_rsqrt_ps(dij);
+					dij = xs::clip(dij, b_type::broadcast(0.0), b_type::broadcast(1.0));
 					dij =  10.0 * (dij * dij * dij);
-					dij = xs::clip(dij, b_type::broadcast(0.0), b_type::broadcast(10.0));
-					//dij = xs::select(mask_threshold, dij_max, dij);	
+					// dij = xs::select(mask_threshold, dij_max, dij);
 
 					raccx_i += diffx * dij * rmass_j;
 					raccy_i += diffy * dij * rmass_j;

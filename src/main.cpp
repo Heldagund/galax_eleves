@@ -88,10 +88,10 @@ int main(int argc, char ** argv)
 	else if (core == "CPU_FAST")
 		model = std::make_unique<Model_CPU_fast>(initstate, particles);
 #endif
-// #ifdef GALAX_MODEL_CPU_FMM
-// 	else if (core == "CPU_FMM")
-// 		model = std::make_unique<Model_CPU_FMM>(initstate, particles);
-// #endif
+#ifdef GALAX_MODEL_CPU_FMM
+	else if (core == "CPU_FMM")
+		model = std::make_unique<Model_CPU_FMM>(initstate, particles);
+#endif
 #ifdef GALAX_MODEL_GPU
 	else if (core == "GPU")
 		model = std::make_unique<Model_GPU>(initstate, particles);
@@ -117,10 +117,10 @@ int main(int argc, char ** argv)
 
 		timing.sample_after();
 
-		//break;
+		// break;
 		float fps = timing.get_current_average_FPS();
 
-		std::cout << "State updates per second: " << fps;
+		// std::cout << "State updates per second: " << fps;
 
 		if(validatePositions)
 		{
