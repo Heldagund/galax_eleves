@@ -80,9 +80,9 @@ void Model_CPU_FMM::Evaluate(Cell* entry, int index_target)
 				else
 				{
                     // Using FMM
-                    float weightx[10];
-                    float weighty[10];
-					float weightz[10];
+                    float weightx[10] = {0.0f};
+                    float weighty[10] = {0.0f};
+					float weightz[10] = {0.0f};
                     GetWeights(diffx, diffy, diffz, distance, weightx, weighty, weightz);
 
 					accelerationsx[index_target] += DotProduct<10>(weightx, c->multipole);
