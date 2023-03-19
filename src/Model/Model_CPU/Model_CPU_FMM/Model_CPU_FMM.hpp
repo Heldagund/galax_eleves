@@ -12,7 +12,7 @@
 #include <iostream>
 #include <string>
 
-#define N_CRIT 100
+#define N_CRIT 2
 #define R_ROOT 1024
 #define THETA 0.1
 

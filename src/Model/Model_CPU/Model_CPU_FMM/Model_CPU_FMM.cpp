@@ -40,11 +40,11 @@ void Model_CPU_FMM
     {
         Evaluate(root, i);
     }
-    // for (const auto &item : accelerationsx) 
-    // {
-    //     std::cout << item << "\n";
-    // }
-	// std::cout << "\n" << std::endl;
+    for (const auto &item : accelerationsx) 
+    {
+        std::cout << item << "\n";
+    }
+	std::cout << "\n" << std::endl;
     // #pragma omp parallel for
 	for (int i = 0; i < n_particles; i++)
 	{
@@ -85,9 +85,9 @@ void Model_CPU_FMM::Evaluate(Cell* entry, int index_target)
 					float weightz[10] = {0.0f};
                     GetWeights(diffx, diffy, diffz, distance, weightx, weighty, weightz);
 
-					accelerationsx[index_target] += DotProduct<10>(weightx, c->multipole);
-					accelerationsy[index_target] += DotProduct<10>(weighty, c->multipole);
-					accelerationsz[index_target] += DotProduct<10>(weightz, c->multipole);
+					accelerationsx[index_target] += 10 * DotProduct<10>(weightx, c->multipole);
+					accelerationsy[index_target] += 10 * DotProduct<10>(weighty, c->multipole);
+					accelerationsz[index_target] += 10 * DotProduct<10>(weightz, c->multipole);
 				}
 			}    
 		}
