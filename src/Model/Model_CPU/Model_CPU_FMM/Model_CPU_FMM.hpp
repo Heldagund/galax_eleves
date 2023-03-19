@@ -12,8 +12,8 @@
 #include <iostream>
 #include <string>
 
-#define N_CRIT 2
-#define R_ROOT 64
+#define N_CRIT 100
+#define R_ROOT 1024
 #define THETA 0.2
 
 class Cell

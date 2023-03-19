@@ -120,7 +120,7 @@ int main(int argc, char ** argv)
 		// break;
 		float fps = timing.get_current_average_FPS();
 
-		// std::cout << "State updates per second: " << fps;
+		std::cout << "State updates per second: " << fps;
 
 		if(validatePositions)
 		{

@@ -14,13 +14,13 @@ Model_CPU_FMM
 ::Model_CPU_FMM(const Initstate& initstate, Particles& particles)
 : Model_CPU(initstate, particles)
 {
-	//root = new Cell(R_ROOT);
+	root = new Cell(R_ROOT);
 	r_min = R_ROOT;
 }
 
 Model_CPU_FMM::~Model_CPU_FMM()
 {
-	//delete root;
+	delete root;
 }
 
 void Model_CPU_FMM
@@ -29,21 +29,22 @@ void Model_CPU_FMM
 	std::fill(accelerationsx.begin(), accelerationsx.end(), 0);
 	std::fill(accelerationsy.begin(), accelerationsy.end(), 0);
 	std::fill(accelerationsz.begin(), accelerationsz.end(), 0);
-	root = new Cell(R_ROOT);
+	// root = new Cell(R_ROOT);
 	BuildTree();
-	MeasureTreeDepth(root);
+	// MeasureTreeDepth(root);
 	//std::cout << "Depth: " << r_min << "\n";
 	GetMultipole(root);
 
+	// #pragma omp parallel for
     for (int i = 0; i < n_particles; i++)
     {
         Evaluate(root, i);
     }
-    for (const auto &item : accelerationsx) 
-    {
-        std::cout << item << "\n";
-    }
-	std::cout << "\n" << std::endl;
+    // for (const auto &item : accelerationsx) 
+    // {
+    //     std::cout << item << "\n";
+    // }
+	// std::cout << "\n" << std::endl;
     // #pragma omp parallel for
 	for (int i = 0; i < n_particles; i++)
 	{
@@ -55,8 +56,8 @@ void Model_CPU_FMM
 		particles.z[i] += velocitiesz   [i] * 0.1f;	
 	}
 
-	//ResetTree(root);
-	delete root;
+	ResetTree(root);
+	// delete root;
 }
 
 void Model_CPU_FMM::Evaluate(Cell* entry, int index_target)
